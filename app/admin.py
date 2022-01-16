@@ -2,7 +2,7 @@ from django.contrib import admin
 # from .models import Category
 # from .models import Subcategory
 # from .models import Question
-
+from .models import Meeting
 # Register your models here.
 # class CategoryAdmin(admin.ModelAdmin):
 #     list_display = ('id','category')
@@ -15,4 +15,6 @@ from django.contrib import admin
 # class QuestionAdmin(admin.ModelAdmin):
 #     list_display = ('id','category','subcategory','question_link','answer_link')
 # admin.site.register(Question,QuestionAdmin)
-
+class MeetingAdmin(admin.ModelAdmin):
+    list_display=('id','title','description','start_time', 'end_time' )
+admin.site.register(Meeting, MeetingAdmin)

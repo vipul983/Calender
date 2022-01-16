@@ -133,3 +133,27 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/accounts/login/'
+
+def verified_callback(user):
+    user.is_active = True
+
+
+EMAIL_VERIFIED_CALLBACK = verified_callback
+EMAIL_FROM_ADDRESS = 'dittodukan@gmail.com'
+EMAIL_MAIL_SUBJECT = 'Confirm your email'
+EMAIL_MAIL_HTML = 'mail_body.html'
+EMAIL_MAIL_PLAIN = 'mail_body.txt'
+EMAIL_TOKEN_LIFE = 60 * 60
+EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
+EMAIL_PAGE_DOMAIN = 'http://localhost:8000/'
+EMAIL_MULTI_USER = True  # optional (defaults to False)
+
+# For Django Email Backend
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'dittodukan@gmail.com'
+EMAIL_HOST_PASSWORD = 'oxbqblzywaoymqfs'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

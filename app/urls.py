@@ -9,6 +9,10 @@ from .forms import LoginForm, MyPasswordChangeForm, MyPasswwordResetForm,MySetPa
 
 urlpatterns = [
     path('', views.home ,name = "home"),
+    path('addmeet/',views.AddMeetView.as_view(),name='addmeet'),
+    path('edit/<int:pk>', views.EditMeetView.as_view(), name='edit'),
+    # path('update/<int:pk>', views.update, name='update'),
+    path('delete/<int:pk>', views.Deletemeet, name='delete'),
     path('registration/',views.CustomerRegistrationView.as_view(),name='customerregistration'),
     path('accounts/login/',auth_views.LoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
     path('logout/',auth_views.LogoutView.as_view(),name='logout'),

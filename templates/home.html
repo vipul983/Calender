@@ -6,8 +6,48 @@
  <div class="row my-3">
   <div class="col-sm-6 offset-sm-3">
    <h3>Home page</h3>
+
    
   </div>
  </div>
 </div>
+
+<div class="container" >
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="display:flex; align-item:center;justify-content:center">
+    {% for i in list %}
+       
+            <div class="col">
+              <div class="card shadow-sm">
+                <img src="https://source.unsplash.com/1200x700/?meeting" class="d-block w-100" alt="...">
+    
+                <div class="card-body" style="display: flex;
+                flex-direction: column;
+                align-items: center;">
+                  <p class="card-text" style="border-bottom: 1px solid black; font-weight:600">Title-{{ i.title}}</p>
+                  <p class="card-text">Description Number-{{ i.description}}</p>
+                  <p class="card-text">Start Time-{{ i.start_time}}</p>
+                  <p class="card-text">End Time-{{ i.end_time}}</p>
+                  {% if request.user.is_authenticated %}
+                   <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      {% comment %} <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> {% endcomment %}
+                      {% comment %} <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button> {% endcomment %}
+                      
+                      <a href="{% url 'edit' i.id %}" class="btn btn-sm btn-outline-secondary"> Edit</a>
+                      <a href="{% url 'delete' i.id %}" class="btn btn-sm btn-outline-secondary"> Delete</a>
+                    </div>
+                    {% comment %} <small class="text-muted">9 mins</small> {% endcomment %}
+                  </div> 
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            
+        
+    {% endfor %}
+    </div>
+    </div>
+
+
+
 {% endblock body %}
