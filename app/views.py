@@ -36,15 +36,7 @@ class CustomerRegistrationView(View):
         return render(request,'customerregistration.html',{'form':form})
 
 
-# class ParticularmeetView(View):
-#     def get(self,request,pk):
-#         totalitem=0
-#         product=Product.objects.get(pk=pk)
-#         item_already_in_cart=False
-#         if request.user.is_authenticated:
-#             totalitem=len(Cart.objects.filter(user=request.user))
-#             item_already_in_cart=Cart.objects.filter(Q(product=product.id) & Q(user=request.user)).exists()
-#         return render(request,'app/productdetail.html',{'product':product ,'item_already_in_cart':item_already_in_cart,'totalitem':totalitem})
+
     
 def Deletemeet(request,pk):
     Meeting.objects.get(pk=pk).delete()
@@ -52,10 +44,7 @@ def Deletemeet(request,pk):
     return render(request,'home.html',{'list': list})
 
 
-# def Editmeet(request,pk):
-    
-#     list=Meeting.objects.filter(pk=pk)
-#     return render(request,'home.html',{'list': list})
+
 
 class AddMeetView(View):
     def get(self,request):
@@ -75,58 +64,11 @@ class AddMeetView(View):
             meet.save()
         return render(request,'addmeet.html',{'form':form})
 
-# def Edit(request,pk):
-#     meeting = Meeting.objects.get(pk=pk)
-#     Meeting.objects.filter(pk=pk).delete()
-#     form=MeetingForm()
-#     return render(request, 'edit.html', {'meeting':meeting,'form':form})  
+
 
 class EditMeetView(View):
     def get(self,request,pk):
         Meeting.objects.filter(pk=pk).delete()
-        
-        # return render(request,'addmeet.html',{'form':form})
         return redirect('/addmeet')
-    # def post(self,request):
 
-    #     form=MeetingForm(request.POST)
-    #     if form.is_valid():
-            
-    #         title = request.POST.get('title')
-    #         description = request.POST.get('description')
-    #         start_time = request.POST.get('start_time')
-    #         end_time = request.POST.get('end_time')
-            
-    #         messages.success(request,'Hurray!! Meeting  has been updated successfully')
-    #         meet = Meeting(title=title, description = description,start_time=start_time, end_time = end_time)
-    #         meet.save()
-    #     list=Meeting.objects.all()
-    #     return render(request,'home.html',{'list':list})
-# def update(request, pk):  
-#     list = Meeting.objects.get(pk=pk)  
-#     form = MeetingForm(request.POST, instance = list)  
-#     if form.is_valid():  
-#         form.save()  
-#         return redirect("/home")  
-#     return render(request, 'addmeet.html', {'list': list}) 
 
-# class EditMeetView(View):
-#     def get(self,request,pk):
-#         list = Meeting.objects.get(pk=pk)
-#         form=MeetingForm()
-        
-        
-#         return render(request,'addmeet.html',{'form':form})
-    # def post(self,request):
-
-    #     form=MeetingForm(request.POST)
-    #     if form.is_valid():
-    #         title = request.POST.get('title')
-    #         description = request.POST.get('description')
-    #         start_time = request.POST.get('start_time')
-    #         end_time = request.POST.get('end_time')
-            
-    #         messages.success(request,'Hurray!! Meeting add successfully')
-    #         meet = Meeting(title=title, description = description,start_time=start_time, end_time = end_time)
-    #         meet.save()
-    #     return render(request,'addmeet.html',{'form':form})

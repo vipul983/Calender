@@ -34,7 +34,7 @@
       
        
         {% if request.user.is_authenticated %}
-        {% comment %} <a href="/profile"> <img style="width : 50px; height : 50px; border-radius 50%; margin: 0 15px;" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></a> {% endcomment %}
+        
            <li class="nav-item dropdown ">
               <a class="nav-link dropdown-toggle text-dark" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{request.user.username|capfirst}}
@@ -58,7 +58,7 @@
     </div>
   </div>
 </nav>
-	{% comment %} <script src="index.js"></script> {% endcomment %}
+
     
     
     {% block body %} {% endblock body %}
