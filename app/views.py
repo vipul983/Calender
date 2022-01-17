@@ -58,9 +58,10 @@ class AddMeetView(View):
             description = request.POST.get('description')
             start_time = request.POST.get('start_time')
             end_time = request.POST.get('end_time')
+            date= request.POST.get('date')
             
             messages.success(request,'Hurray!! Meeting add successfully')
-            meet = Meeting(title=title, description = description,start_time=start_time, end_time = end_time)
+            meet = Meeting(title=title, description = description,start_time=start_time, end_time = end_time,date=date)
             meet.save()
         return render(request,'addmeet.html',{'form':form})
 
@@ -68,7 +69,24 @@ class AddMeetView(View):
 
 class EditMeetView(View):
     def get(self,request,pk):
-        Meeting.objects.filter(pk=pk).delete()
-        return redirect('/addmeet')
+        meeting = Meeting.objects.get(pk=pk)
+        data_dict = {'title': meeting.title,'description':meeting.description,'start_time':meeting.start_time,'end_time':meeting.end_time,'date':meeting.date}
+        form=MeetingForm(data_dict)
+        return render(request,'addmeet.html',{'form':form})
+
+    def post(self,request,pk):
+
+        form=MeetingForm(request.POST)
+        if form.is_valid():
+            title = request.POST.get('title')
+            description = request.POST.get('description')
+            start_time = request.POST.get('start_time')
+            end_time = request.POST.get('end_time')
+            date= request.POST.get('date')
+            
+            messages.success(request,'Hurray!! Meeting updated successfully')
+            meet = Meeting(pk=pk,title=title, description = description,start_time=start_time, end_time = end_time,date=date)
+            meet.save()
+        return render(request,'addmeet.html',{'form':form})
 
 

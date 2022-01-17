@@ -6,12 +6,21 @@ from django.contrib.auth.models import User
 from django.forms import fields, widgets
 from django.utils.translation import gettext,gettext_lazy as _
 from .models import Meeting
+from django.contrib.admin.widgets import AdminDateWidget
+
+class TimeInput(forms.DateTimeInput):
+    input_type = 'time'
+
+
+class DateInput(forms.DateTimeInput):
+    input_type = 'date'
 
 class MeetingForm(forms.Form):
     title=forms.CharField(label='Title',max_length=50, widget=forms.URLInput(attrs={'class':'form-control'}))
     description = forms.CharField(label='Description',max_length=200,widget=forms.TextInput(attrs={'class':'form-control','rows':'2'}))
-    start_time = forms.DateTimeField(label='Start Time(yyyy-mm-dd hr:min:sec)',widget=forms.DateTimeInput(attrs={'class':'form-control'}))
-    end_time=forms.DateTimeField(label='End Time(yyyy-mm-dd hr:min:sec)',widget=forms.DateTimeInput(attrs={'class':'form-control'}))
+    start_time = forms.TimeField(label='Start Time',widget=TimeInput(attrs={'class':'form-control'}))
+    end_time=forms.TimeField(label='End Time',widget=TimeInput(attrs={'class':'form-control'}))
+    date=forms.DateField(label='Enter date',widget=DateInput(attrs={'class':'form-control'}))
     
     
 

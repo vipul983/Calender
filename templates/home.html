@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Home{% endblock title %}
 {% block body %}
-<div class="container">
+{% comment %} <div class="container">
  <div class="row my-3">
   <div class="col-sm-6 offset-sm-3">
    <h3>Home page</h3>
@@ -10,10 +10,12 @@
    
   </div>
  </div>
-</div>
+</div> {% endcomment %}
+<br>
+<br>
 
 <div class="container" >
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="display:flex; align-item:center;justify-content:center">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
     {% for i in list %}
        
             <div class="col">
@@ -25,8 +27,10 @@
                 align-items: center;">
                   <p class="card-text" style="border-bottom: 1px solid black; font-weight:600">Title-{{ i.title}}</p>
                   <p class="card-text">Description-{{ i.description}}</p>
+                  <p class="card-text">Date-{{ i.date}}</p>
                   <p class="card-text">Start Time-{{ i.start_time}}</p>
                   <p class="card-text">End Time-{{ i.end_time}}</p>
+                  
                   {% if request.user.is_authenticated %}
                    <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
