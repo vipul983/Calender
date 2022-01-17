@@ -26,7 +26,7 @@ class CustomerRegistrationView(View):
     def post(self,request):
         form=CustomerRegistrationForm(request.POST)
         if form.is_valid():
-            messages.success(request,'Congratulations!! You are registered successfully')
+            messages.success(request,'Congratulations!! You are registered successfully.To activite your account kindly check your mail!')
             # form.save()
             user = form.save( commit= False)
             user.is_active = False
@@ -84,7 +84,7 @@ class EditMeetView(View):
             end_time = request.POST.get('end_time')
             date= request.POST.get('date')
             
-            messages.success(request,'Hurray!! Meeting updated successfully')
+            messages.success(request,'Hurray!! Meeting updated successfully!!')
             meet = Meeting(pk=pk,title=title, description = description,start_time=start_time, end_time = end_time,date=date)
             meet.save()
         return render(request,'addmeet.html',{'form':form})
